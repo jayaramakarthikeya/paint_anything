@@ -9,10 +9,10 @@ import glob
 if __name__=="__main__":
     device = ('cuda' if torch.cuda.is_available() else 'cpu')
     gen_BA = UnetGenerator(input_channels=3,output_channels=3).to(device)
-    save_pt = torch.load("/kaggle/input/unet-cyclegan/cycleGAN2.pth")
+    save_pt = torch.load("./unet-cyclegan/cycleGAN2.pth")
     gen_BA.load_state_dict(save_pt['gen_BA'])
     gen_res = ResnetGenerator(3,3).to(device)
-    save_resnet_pt = torch.load("/kaggle/input/resnet-cyclegan/cycleGAN_resnet.pth")
+    save_resnet_pt = torch.load("./resnet-cyclegan/cycleGAN_resnet.pth")
     gen_res.load_state_dict(save_resnet_pt["gen_BA"])
     gen_res.eval()
     gen_BA.eval()
